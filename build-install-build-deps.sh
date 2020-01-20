@@ -27,20 +27,14 @@ cd fmi_library
 fmi_library_include_install_dir=/usr/local/include/fmi-library
 fmi_library_lib_install_dir=/usr/local/lib/fmi-library
 
-if ! [ -e ${fmi_library_include_install_dir} -a -e ${fmi_library_lib_install_dir} ]
-then
-echo "
-Downloading FMI library...
-"
+if ! [ -e ${fmi_library_include_install_dir} -a -e ${fmi_library_lib_install_dir} ] then
+  echo "Downloading FMI library..."
 
-if [ ! -d FMILibrary-2.0.2 ]
-then
-  wget --no-parent -nH --cut-dirs=2 -r https://jmodelica.org/FMILibrary/FMILibrary-2.0.2-src.zip
-fi
+  if [ ! -d FMILibrary-2.0.2 ] then
+    wget --no-parent -nH --cut-dirs=2 -r https://jmodelica.org/FMILibrary/FMILibrary-2.0.2-src.zip
+  fi
 
-echo "
-Building FMI library...
-"
+  echo "Building FMI library..."
   unzip FMILibrary-2.0.2-src.zip
   cd FMILibrary-2.0.2
   mkdir -p build
@@ -48,17 +42,17 @@ Building FMI library...
   cmake ../. -DCMAKE_BUILD_TYPE=RELEASE
   make -j8 install
   cd ..
-  if [[ -d "install" ]]
-  then
+  mkdir -p install
+  if [[ -d "install" ]] then
     cd install
-      mkdir -p ${fmi_library_include_install_dir}
-    if [[ -d ${fmi_library_include_install_dir} ]]
-    then
+
+    mkdir -p ${fmi_library_include_install_dir}
+    if [[ -d ${fmi_library_include_install_dir} ]] then
       cp -uvrf ./include/* ${fmi_library_include_install_dir}/
     fi
+
     mkdir -p ${fmi_library_lib_install_dir}
-    if [[ -d ${fmi_library_lib_install_dir} ]]
-    then
+    if [[ -d ${fmi_library_lib_install_dir} ]] then
       cp -uvrf ./lib/* ${fmi_library_lib_install_dir}/
     fi
   else
