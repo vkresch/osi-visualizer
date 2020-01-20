@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: installdeps
-      run: ./install-deps.sh && ./build-install-build-deps.sh
+      run: sudo sh install-deps.sh && sudo sh build-install-build-deps.sh
     - name: configure
       run: mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS="-Werror" ..
     - name: build
@@ -26,7 +26,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: installdeps
-      run: ./install-deps.sh && ./build-install-build-deps.sh
+      run: sh install-deps.sh && sh build-install-build-deps.sh
     - name: configure
       run: mkdir build && cd build && cmake ..
     - name: build
