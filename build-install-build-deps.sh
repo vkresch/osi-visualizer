@@ -44,23 +44,19 @@ then
   cmake ../. -DCMAKE_BUILD_TYPE=RELEASE
   make -j8 install
   cd ..
-  mkdir -p install
-  if [[ -d "install" ]] 
+  mkdir -p install  
+  cd install
+
+  mkdir -p ${fmi_library_include_install_dir}
+  if [[ -d ${fmi_library_include_install_dir} ]] 
   then
-    cd install
-
-    mkdir -p ${fmi_library_include_install_dir}
-    if [[ -d ${fmi_library_include_install_dir} ]] 
-    then
-      cp -uvrf ./include/* ${fmi_library_include_install_dir}/
-    fi
-
-    mkdir -p ${fmi_library_lib_install_dir}
-    if [[ -d ${fmi_library_lib_install_dir} ]] 
-    then
-      cp -uvrf ./lib/* ${fmi_library_lib_install_dir}/
-    fi
-  else
-    echo "Could not install the fmi-library into usr/local"
+    cp -uvrf ./include/* ${fmi_library_include_install_dir}/
   fi
+
+  mkdir -p ${fmi_library_lib_install_dir}
+  if [[ -d ${fmi_library_lib_install_dir} ]] 
+  then
+    cp -uvrf ./lib/* ${fmi_library_lib_install_dir}/
+  fi
+
 fi
