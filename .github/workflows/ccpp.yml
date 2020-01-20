@@ -9,6 +9,8 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
+    - name: updatesystem
+      run: sudo apt-get update && sudo apt-get upgrade && sudo apt-get autoremove
     - name: installdeps
       run: sudo sh install-deps.sh && sudo sh build-install-build-deps.sh
     - name: configure
@@ -25,6 +27,8 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
+    - name: updatesystem
+      run: sudo apt-get update && sudo apt-get upgrade && sudo apt-get autoremove
     - name: installdeps
       run: sh install-deps.sh && sh build-install-build-deps.sh
     - name: configure
