@@ -46,16 +46,8 @@ then
   make -j8 install
   cd ../install
 
-  mkdir -p ${fmi_library_include_install_dir}
-  if [[ -d ${fmi_library_include_install_dir} ]] 
-  then
-    cp -uvrf ./include/* ${fmi_library_include_install_dir}/
-  fi
-
-  mkdir -p ${fmi_library_lib_install_dir}
-  if [[ -d ${fmi_library_lib_install_dir} ]] 
-  then
-    cp -uvrf ./lib/* ${fmi_library_lib_install_dir}/
-  fi
-
+  sudo mkdir -p ${fmi_library_include_install_dir}
+  sudo cp -uvrf ./include/* ${fmi_library_include_install_dir}/
+  sudo mkdir -p ${fmi_library_lib_install_dir}
+  sudo cp -uvrf ./lib/* ${fmi_library_lib_install_dir}/
 fi
