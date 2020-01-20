@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: C++ CI
 
 on: [push]
 
@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: installdeps
-      run: sudo bash install-deps.sh && sudo bash build-install-build-deps.sh
+      run: ./install-deps.sh && ./build-install-build-deps.sh
     - name: configure
       run: mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS="-Werror" ..
     - name: build
@@ -26,7 +26,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: installdeps
-      run: sudo bash install-deps.sh && sudo bash build-install-build-deps.sh
+      run: ./install-deps.sh && ./build-install-build-deps.sh
     - name: configure
       run: mkdir build && cd build && cmake ..
     - name: build
