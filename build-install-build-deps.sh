@@ -41,11 +41,10 @@ then
   cd FMILibrary-2.0.2
   mkdir -p build
   cd build
-  cmake ../. -DCMAKE_BUILD_TYPE=RELEASE
+  cmake ..
+  make -j8
   make -j8 install
-  cd ..
-  mkdir -p install  
-  cd install
+  cd ../install
 
   mkdir -p ${fmi_library_include_install_dir}
   if [[ -d ${fmi_library_include_install_dir} ]] 
