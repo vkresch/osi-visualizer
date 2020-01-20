@@ -24,8 +24,6 @@ echo "
 mkdir -p fmi_library
 cd fmi_library
 
-FMI_lib_version=2.0.2
-
 fmi_library_include_install_dir=/usr/local/include/fmi-library
 fmi_library_lib_install_dir=/usr/local/lib/fmi-library
 
@@ -35,15 +33,16 @@ echo "
 Downloading FMI library...
 "
 
-if [ ! -d $FMI_lib_version ]
+if [ ! -d FMILibrary-2.0.2 ]
 then
-  wget --no-parent -nH --cut-dirs=2 -r https://svn.jmodelica.org/FMILibrary/tags/$FMI_lib_version/
+  wget --no-parent -nH --cut-dirs=2 -r https://jmodelica.org/FMILibrary/FMILibrary-2.0.2-src.zip
 fi
 
 echo "
 Building FMI library...
 "
-  cd ${FMI_lib_version}
+  unzip FMILibrary-2.0.2-src.zip
+  cd FMILibrary-2.0.2
   mkdir -p build
   cd build
   cmake ../. -DCMAKE_BUILD_TYPE=RELEASE
